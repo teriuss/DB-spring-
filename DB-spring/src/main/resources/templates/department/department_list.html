@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="header :: head">
+<body>
+<nav th:replace="header :: header"> </nav>
+<div class="container">
+    <div class="row p-3 text-center">
+        <div class="col-12">
+            <a class="btn btn-primary" href="/department/create">Добавить
+
+                новую запись</a>
+        </div>
+    </div>
+    <table class="table-bordered w-100">
+        <thead class="table-header">
+        <tr>
+            <th> Dnumber </th>
+            <th> Dname </th>
+            <th> Mgr_ssn </th>
+            <th> Mgr_start_date </th>
+            <th>Otions</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="dept : ${departments}">
+            <td th:text="${dept.getDnumber()}"></td>
+            <td th:text="${dept.getDname()}"></td>
+            <td th:text="${dept.getMgr_ssn().getFname()} + ' ' +
+
+${dept.getMgr_ssn().getLname()}"></td>
+
+            <td th:text="${dept.getMgr_start_date()}"></td>
+            <td class="text-center">
+                <a th:href="'/department/update/' + ${dept.getDnumber()}"
+
+                   class="btn btn-dark">Изменить</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

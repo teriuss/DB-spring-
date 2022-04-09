@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="header :: head">
+<body>
+<nav th:replace="header :: header"> </nav>
+<div class="container">
+    <table class="table-bordered w-100">
+        <thead class="table-header">
+        <tr>
+            <th> Ssn </th>
+            <th> Fname </th>
+            <th> Lname </th>
+            <th> Sex </th>
+            <th> Bdate </th>
+            <th> Address </th>
+            <th> Salary </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.getSsn()}"></td>
+            <td th:text="${employee.getFname()}"></td>
+            <td th:text="${employee.getLname()}"></td>
+
+            <td th:text="${employee.getSex()}"></td>
+            <td th:text="${employee.getBdate()}"></td>
+            <td th:text="${employee.getAddress()}"></td>
+            <td th:text="${employee.getSalary()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head th:replace="header :: head">
+<body>
+<nav th:replace="header :: header"> </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Операции над отделами</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form th:object="${department}" th:action="${department != null ?
+
+'/department/update' : '/department/create'}" method="post">
+                        <div class="form-group mb-3 row">
+                            <label class="form-label col-3 col-form-label">Номер
+
+                                отдела</label>
+
+                            <div class="col">
+                                <input type="number" id="Dnumber" name="Dnumber"
+                                       class="form-control" th:value="${department != null ? department.getDnumber() : ''}">
+                                <small class="form-hint text-danger"></small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <label class="form-label col-3
+
+col-form-label">Название</label>
+
+                            <div class="col">
+                                <input type="text" id="Dname" name="Dname"
+                                       class="form-control" th:value="${department != null ? department.getDname() : ''}">
+                                <small class="form-hint text-danger"></small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <label class="form-label col-3
+
+col-form-label">Менеджер</label>
+
+                            <div class="col">
+                                <select name="Mgr_id" class="form-control" id="Mgr_id">
+                                    <option disabled>Выберите менеджера</option>
+                                    <option th:each="emp: ${employees}"
+
+                                            th:value="${emp.getSsn()}"
+
+                                            th:text="${emp.getLname()} + ' ' +
+
+${emp.getFname()}"
+
+                                            th:selected="${department != null ?
+
+department.getMgr_ssn().getSsn()==emp.getSsn() : ''}">
+
+                                    </option>
+                                </select>
+
+                                <small class="form-hint text-danger"></small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <label class="form-label col-3 col-form-label">Дата начала
+
+                                управления</label>
+
+                            <div class="col">
+                                <input type="date" id="Mgr_start_date"
+                                       name="Mgr_start_date" class="form-control" th:value="${department != null ?
+#dates.format(department.getMgr_start_date(), 'yyyy-MM-dd') : ''}">
+                                <small class="form-hint text-danger"></small>
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button type="submit" class="btn
+
+btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
